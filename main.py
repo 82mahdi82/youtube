@@ -52,7 +52,8 @@ def handler_serch(call):
     bot.send_message(cid,"درحال دانلود")
     local_filename=do.download_file(dict_cid_qualiry_url[cid][url],f"{video_id}.mp4")
     bot.send_message(cid,"درحال ارسال")
-    bot.send_video(cid,local_filename)
+    with open(local_filename, 'rb') as video:
+        bot.send_video(cid, video)
     dict_cid_qualiry_url.pop(cid)
 @bot.callback_query_handler(func=lambda call: call.data.startswith('download'))
 def handler_serch(call):

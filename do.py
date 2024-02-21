@@ -25,16 +25,16 @@ def download_file(url, local_filename):
         r.raise_for_status()
         
         # باز کردن فایل محلی برای نوشتن محتوای دریافتی
-        with open(local_filename, 'wb') as f:
+        with open(f'{local_filename}.mp4', 'wb') as f:
             # دریافت و ذخیره محتوای دریافتی به عنوان یک فایل محلی
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
                 
-    return local_filename
+    return f'{local_filename}.mp4'
 
 # URL فایل مورد نظر و مسیر محلی برای ذخیره فایل
 
-local_filename = "file_name.mp4"
+# local_filename = "file_name.mp4"
 
 # دانلود فایل
 # with Client("my_account", api_id=api_id, api_hash=api_hash) as app:
