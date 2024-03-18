@@ -8,12 +8,13 @@ def download_video(video_id):
     :param video_id: شناسه ویدئو
     :param save_path: مسیر ذخیره سازی فایل
     """
-    yt = YouTube(f"https://www.youtube.com/shorts/{video_id}")
+
+    yt = YouTube(video_id)
     test=yt.streaming_data["formats"]
-    print(test)
+    # print(test)
     return test
 
-# print(download_video())
+# print(download_video("video_id"))
 
 import requests
 

@@ -12,7 +12,7 @@ def search_youtube(query, max_results=100):
     videos = []
     t=0
     for video in results:
-        print(video)
+        print(video["link"])
         if len(video['thumbnails'])>1:
             videos.append({'title': video['title'],
                            'video_id': video['id'],
@@ -20,7 +20,8 @@ def search_youtube(query, max_results=100):
                            "time":video['duration'],
                            "chanlel":video['channel']['name'],
                            "viewCount":video["viewCount"]["short"],
-                           "publishedTime":video["publishedTime"]})
+                           "publishedTime":video["publishedTime"],
+                           "link":video["link"]})
         else:
             videos.append({'title': video['title'],
                            'video_id': video['id'],
@@ -28,9 +29,10 @@ def search_youtube(query, max_results=100):
                            "time":video['duration'],
                            "chanlel":video['channel']['name'],
                            "viewCount":video["viewCount"]["short"],
-                           "publishedTime":video["publishedTime"]})    
+                           "publishedTime":video["publishedTime"],
+                           "link":video["link"]})    
         
         t+=1
     return videos
 
-
+# search_youtube("بیلی آیلیش")

@@ -10,7 +10,8 @@ import database
 database.creat_database_tables()
 
 TOKEN ='6317356905:AAGQ2p8Lo0Kc4mkChTmE7ZbI2p1bzw9cIO8'
-channel_id=-1001818196521 
+# channel_id=-1001818196521 
+channel_id= -1001996341847
 
 dict_cid_qualiry_url={}#cid{quality:url}
 list_cid_serch={}
@@ -74,12 +75,17 @@ def handler_serch(call):
         # # with open(local_filename, 'rb') as video:
         # #     bot.send_video(cid, video)
         # dict_cid_qualiry_url.pop(cid)
-@bot.callback_query_handler(func=lambda call: call.data.startswith('download'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('downld'))
 def handler_serch(call):
     cid=call.message.chat.id
     mid=call.message.message_id
     video_id=call.data.split("_")[1]
-    list_g=do.download_video(video_id)
+    link=call.data.split("_")[2]
+    print(video_id)
+    print(link)
+    list_g=do.download_video(link)
+    
+    print(list_g)
     markup=InlineKeyboardMarkup()
     dict_cid_qualiry_url.setdefault(cid,{})
     for i in list_g:
@@ -105,10 +111,10 @@ def handler_serch(call):
         bot.a
     for video in list_res_page:
         try:
-            print(video)
-            print(video["url_jpeg"])
+            # print(video)
+            # print(video["url_jpeg"])
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"download_{video['video_id']}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
             bot.send_photo(cid, video["url_jpeg"],caption=f"""{video["title"]}
 زمان: {video["time"]}
 اسم چنل: {video["chanlel"]}
@@ -116,7 +122,7 @@ def handler_serch(call):
             time.sleep(0.5)
         except:
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"download_{video['video_id']}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
             bot.send_message(cid,video["title"],reply_markup=markup)
     markup=InlineKeyboardMarkup()
     if int(page)==1:
@@ -152,7 +158,7 @@ def handler_serch_message(m):
             # print(video)
             # print(video["url_jpeg"])
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"download_{video['video_id']}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
             bot.send_photo(cid, video["url_jpeg"],caption=f"""{video["title"]}
 زمان: {video["time"]}
 ویو:{video["viewCount"]}
@@ -162,7 +168,7 @@ def handler_serch_message(m):
             time.sleep(0.5)
         except:
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"download_{video['video_id']}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
             bot.send_message(cid,video["title"],reply_markup=markup)
 
     markup=InlineKeyboardMarkup()
