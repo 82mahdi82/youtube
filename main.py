@@ -114,7 +114,7 @@ def handler_serch(call):
             # print(video)
             # print(video["url_jpeg"])
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video['link']}"))
             bot.send_photo(cid, video["url_jpeg"],caption=f"""{video["title"]}
 زمان: {video["time"]}
 اسم چنل: {video["chanlel"]}
@@ -122,7 +122,7 @@ def handler_serch(call):
             time.sleep(0.5)
         except:
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video['link']}"))
             bot.send_message(cid,video["title"],reply_markup=markup)
     markup=InlineKeyboardMarkup()
     if int(page)==1:
@@ -158,7 +158,7 @@ def handler_serch_message(m):
             # print(video)
             # print(video["url_jpeg"])
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video['link']}"))
             bot.send_photo(cid, video["url_jpeg"],caption=f"""{video["title"]}
 زمان: {video["time"]}
 ویو:{video["viewCount"]}
@@ -168,7 +168,7 @@ def handler_serch_message(m):
             time.sleep(0.5)
         except:
             markup=InlineKeyboardMarkup()
-            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video["link"]}"))
+            markup.add(InlineKeyboardButton("دانلود",callback_data=f"downld_{video['video_id']}_{video['link']}"))
             bot.send_message(cid,video["title"],reply_markup=markup)
 
     markup=InlineKeyboardMarkup()
