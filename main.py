@@ -35,6 +35,7 @@ def listener(messages):
     When new messages arrive TeleBot will call this function.
     """
     for m in messages:
+        print(m)
         cid = m.chat.id
         if m.content_type == 'text':
             print(str(m.chat.first_name) +
@@ -62,13 +63,14 @@ def handler_serch(call):
     elif len(list_check)==0:
         bot.send_message(cid,"درحال دانلود")
         local_filename=do.download_file(dict_cid_qualiry_url[cid][url],f"{video_id}.mp4")
+        dict_cid_qualiry_url.pop(cid)
         bot.send_message(cid,"درحال ارسال")
         # result=subprocess.run([sys.executable, "testpro.py", local_filename], capture_output=True, text=True)
         # print("Output:", result.stdout)
         # print("Errors:", result.stderr)
         # message_id_video=int(result.stdout)
         with open(local_filename, 'rb') as video:
-            messag=bot.send_video(cid, video)
+            messag=bot.send_video(channel_id, video)
         message_id_video=messag.message_id
         database.insert_video(video_id,message_id_video)
         bot.forward_message(cid,channel_id,message_id_video)
