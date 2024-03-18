@@ -69,7 +69,7 @@ def handler_serch(call):
         # message_id_video=int(result.stdout)
         with open(local_filename, 'rb') as video:
             messag=bot.send_video(cid, video)
-        message_id_video=messag.me
+        message_id_video=messag.message_id
         database.insert_video(video_id,message_id_video)
         bot.forward_message(cid,channel_id,message_id_video)
         # # with open(local_filename, 'rb') as video:
