@@ -27,7 +27,7 @@ def download_file(url, local_filename):
         # باز کردن فایل محلی برای نوشتن محتوای دریافتی
         with open(local_filename, 'wb') as f:
             # دریافت و ذخیره محتوای دریافتی به عنوان یک فایل محلی
-            for chunk in r.iter_content(chunk_size=8192):
+            for chunk in r.iter_content(chunk_size=101340):
                 f.write(chunk)
                 
     return local_filename
