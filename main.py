@@ -60,6 +60,7 @@ def handler_serch(call):
     list_check=database.use_video(video_id)
     if len(list_check)>0:
         bot.forward_message(cid,channel_id,list_check[0][1])
+        dict_cid_qualiry_url.pop(cid)
     elif len(list_check)==0:
         bot.send_message(cid,"درحال دانلود")
         local_filename=do.download_file(dict_cid_qualiry_url[cid][url],f"{video_id}.mp4")
@@ -73,7 +74,7 @@ def handler_serch(call):
             messag=bot.send_video(channel_id, video)
         message_id_video=messag.message_id
         database.insert_video(video_id,message_id_video)
-        bot.forward_message(cid,channel_id,message_id_video)
+        bot.copy_message(cid,channel_id,message_id_video)
         # # with open(local_filename, 'rb') as video:
         # #     bot.send_video(cid, video)
         # dict_cid_qualiry_url.pop(cid)
